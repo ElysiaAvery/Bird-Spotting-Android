@@ -40,15 +40,12 @@ public class MainActivity extends AppCompatActivity
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
-        if (mFirebaseUser == null) {
-            // Not logged in, launch the Log In activity
-            loadLogInView();
-        }
-
         Typeface elegantFont = Typeface.createFromAsset(getAssets(), "fonts/AquilineTwo.ttf");
         mHeader.setTypeface(elegantFont);
         Typeface sansFont = Typeface.createFromAsset(getAssets(), "fonts/valencia.otf");
         mAddText.setTypeface(sansFont);
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +64,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+
+        if (mFirebaseUser == null) {
+            // Not logged in, launch the Log In activity
+            loadLogInView();
+        } else if (mFirebaseUser != null) {
+            String fireEmail = mFirebaseUser.getEmail();
+            TextView email = (TextView)header.findViewById(R.id.userEmailHeader);
+            email.setText(fireEmail);
+        }
     }
 
     private void loadLogInView() {
