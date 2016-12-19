@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "510244782277",
+    "firebase_url": "https://birdspotting-7a2e5.firebaseio.com",
+    "project_id": "birdspotting-7a2e5",
+    "storage_bucket": "birdspotting-7a2e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510244782277:android:4c6a55d7becb4a52",
+        "android_client_info": {
+          "package_name": "com.example.guest.aviary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510244782277-kdan7prgli0b0mfcmpgc4a78b79l7ev2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.guest.aviary",
+            "certificate_hash": "326260D4174ED290E7953EEF756B60FCA7C2EC6E"
+          }
+        },
+        {
+          "client_id": "510244782277-8e1eai67a66gst2l50ulh6jhv3fhedop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzvNxAZA7nf1TKb0XjFViuKhE55gnomGs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510244782277-8e1eai67a66gst2l50ulh6jhv3fhedop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
