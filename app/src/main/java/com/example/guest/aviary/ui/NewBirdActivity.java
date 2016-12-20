@@ -142,7 +142,9 @@ public class NewBirdActivity extends AppCompatActivity {
 
     final String[] remizidaeArray = {"Verdin"};
 
-    final String[] sittidaeArray = {"Pygmy Nuthatch", "Red-breasted Nuthatch", "White-breasted Nuthatch", "European Starling"};
+    final String[] sittidaeArray = {"Pygmy Nuthatch", "Red-breasted Nuthatch", "White-breasted Nuthatch"};
+
+    final String[] sturnidaeArray = {"European Starling"};
 
     final String[] sylviidaeArray = {"Black-tailed Gnatcatcher"};
 
@@ -191,8 +193,173 @@ public class NewBirdActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, familyArray);
         mFamilySpinner.setAdapter(familyAdapter);
 
-        final ArrayAdapter<String> birdAdapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> anatidaeAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, anatidaeArray);
+
+        final ArrayAdapter<String> trochilidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, trochilidaeArray);
+
+        final ArrayAdapter<String> caprimulgidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, caprimulgidaeArray);
+
+        final ArrayAdapter<String> alcidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, alcidaeArray);
+
+        final ArrayAdapter<String> charadriidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, charadriidaeArray);
+
+        final ArrayAdapter<String> haematopodidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, haematopodidaeArray);
+
+        final ArrayAdapter<String> laridaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, laridaeArray);
+
+        final ArrayAdapter<String> recurvirostridaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, recurvirostridaeArray);
+
+        final ArrayAdapter<String> scolopacidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, scolopacidaeArray);
+
+        final ArrayAdapter<String> ardeidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, ardeidaeArray);
+
+        final ArrayAdapter<String> cathartidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, cathartidaeArray);
+
+        final ArrayAdapter<String> threskiornithidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, threskiornithidaeArray);
+
+        final ArrayAdapter<String> columbidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, columbidaeArray);
+
+        final ArrayAdapter<String> alcedinidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, alcedinidaeArray);
+
+        final ArrayAdapter<String> cuculidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, cuculidaeArray);
+
+        final ArrayAdapter<String> accipitridaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, accipitridaeArray);
+
+        final ArrayAdapter<String> falconidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, falconidaeArray);
+
+        final ArrayAdapter<String> cracidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, cracidaeArray);
+
+        final ArrayAdapter<String> odontophoridaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, odontophoridaeArray);
+
+        final ArrayAdapter<String> phasiandaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, phasiandaeArray);
+
+        final ArrayAdapter<String> gaviidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, gaviidaeArray);
+
+        final ArrayAdapter<String> gruidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, gruidaeArray);
+
+        final ArrayAdapter<String> rallidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, rallidaeArray);
+
+        final ArrayAdapter<String> bombycillidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, bombycillidaeArray);
+
+        final ArrayAdapter<String> cardinalidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, cardinalidaeArray);
+
+        final ArrayAdapter<String> certhiidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, certhiidaeArray);
+
+        final ArrayAdapter<String> cinclidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, cinclidaeArray);
+
+        final ArrayAdapter<String> corvidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, corvidaeArray);
+
+        final ArrayAdapter<String> emberizidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, emberizidaeArray);
+
+        final ArrayAdapter<String> fringillidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, fringillidaeArray);
+
+        final ArrayAdapter<String> hirundinidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, hirundinidaeArray);
+
+        final ArrayAdapter<String> icteridaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, icteridaeArray);
+
+        final ArrayAdapter<String> laniidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, laniidaeArray);
+
+        final ArrayAdapter<String> mimidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, mimidaeArray);
+
+        final ArrayAdapter<String> paridaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, paridaeArray);
+
+        final ArrayAdapter<String> parulidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, parulidaeArray);
+
+        final ArrayAdapter<String> passeridaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, passeridaeArray);
+
+        final ArrayAdapter<String> ptilogonatidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, ptilogonatidaeArray);
+
+        final ArrayAdapter<String> regulidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, regulidaeArray);
+
+        final ArrayAdapter<String> remizidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, remizidaeArray);
+
+        final ArrayAdapter<String> sittidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, sittidaeArray);
+
+        final ArrayAdapter<String> sylviidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, sylviidaeArray);
+
+        final ArrayAdapter<String> thraupidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, thraupidaeArray);
+
+        final ArrayAdapter<String> troglodytidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, troglodytidaeArray);
+
+        final ArrayAdapter<String> turdidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, turdidaeArray);
+
+        final ArrayAdapter<String> tyrannidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, tyrannidaeArray);
+
+        final ArrayAdapter<String> pelecanidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, pelecanidaeArray);
+
+        final ArrayAdapter<String> phalacrocoracidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, phalacrocoracidaeArray);
+
+        final ArrayAdapter<String> sulidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, sulidaeArray);
+
+        final ArrayAdapter<String> picidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, picidaeArray);
+
+        final ArrayAdapter<String> ramphastidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, ramphastidaeArray);
+
+        final ArrayAdapter<String> podicipedidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, podicipedidaeArray);
+
+        final ArrayAdapter<String> psittacidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, psittacidaeArray);
+
+        final ArrayAdapter<String> strigidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, strigidaeArray);
+
+        final ArrayAdapter<String> trogonidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, trogonidaeArray);
+
+        final ArrayAdapter<String> sturnidaeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, sturnidaeArray);
 
 
         mFamilySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -200,9 +367,119 @@ public class NewBirdActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selected = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(NewBirdActivity.this, "Hello Toast",Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewBirdActivity.this, selected,Toast.LENGTH_SHORT).show();
                 if(selected.equals("Anatidae")){
-                    mBirdNameSpinner.setAdapter(birdAdapter);
+                    mBirdNameSpinner.setAdapter(anatidaeAdapter);
+                } else if(selected.equals("Trochilidae")) {
+                    mBirdNameSpinner.setAdapter(trochilidaeAdapter);
+                } else if(selected.equals("Accipitridae")) {
+                    mBirdNameSpinner.setAdapter(accipitridaeAdapter);
+                } else if(selected.equals("Alcedinidae")) {
+                    mBirdNameSpinner.setAdapter(alcedinidaeAdapter);
+                } else if(selected.equals("Alcidae")) {
+                    mBirdNameSpinner.setAdapter(alcidaeAdapter);
+                } else if(selected.equals("Ardeidae")) {
+                    mBirdNameSpinner.setAdapter(ardeidaeAdapter);
+                } else if(selected.equals("Bombycillidae")) {
+                    mBirdNameSpinner.setAdapter(bombycillidaeAdapter);
+                } else if(selected.equals("Cardinalidae")) {
+                    mBirdNameSpinner.setAdapter(cardinalidaeAdapter);
+                } else if(selected.equals("Cathartidae")) {
+                    mBirdNameSpinner.setAdapter(cathartidaeAdapter);
+                } else if(selected.equals("Caprimulgidae")) {
+                    mBirdNameSpinner.setAdapter(caprimulgidaeAdapter);
+                } else if(selected.equals("Certhiidae")) {
+                    mBirdNameSpinner.setAdapter(certhiidaeAdapter);
+                } else if(selected.equals("Charadriidae")) {
+                    mBirdNameSpinner.setAdapter(charadriidaeAdapter);
+                } else if(selected.equals("Cinclidae")) {
+                    mBirdNameSpinner.setAdapter(cinclidaeAdapter);
+                } else if(selected.equals("Columbidae")) {
+                    mBirdNameSpinner.setAdapter(columbidaeAdapter);
+                } else if(selected.equals("Corvidae")) {
+                    mBirdNameSpinner.setAdapter(corvidaeAdapter);
+                } else if(selected.equals("Cracidae")) {
+                    mBirdNameSpinner.setAdapter(cracidaeAdapter);
+                } else if(selected.equals("Cuculidae")) {
+                    mBirdNameSpinner.setAdapter(cuculidaeAdapter);
+                } else if(selected.equals("Emberizidae")) {
+                    mBirdNameSpinner.setAdapter(emberizidaeAdapter);
+                } else if(selected.equals("Falconidae")) {
+                    mBirdNameSpinner.setAdapter(falconidaeAdapter);
+                } else if(selected.equals("Fringillidae")) {
+                    mBirdNameSpinner.setAdapter(fringillidaeAdapter);
+                } else if(selected.equals("Gaviidae")) {
+                    mBirdNameSpinner.setAdapter(gaviidaeAdapter);
+                } else if(selected.equals("Haematopodidae")) {
+                    mBirdNameSpinner.setAdapter(haematopodidaeAdapter);
+                } else if(selected.equals("Hirundinidae")) {
+                    mBirdNameSpinner.setAdapter(hirundinidaeAdapter);
+                } else if(selected.equals("Icteridae")) {
+                    mBirdNameSpinner.setAdapter(hirundinidaeAdapter);
+                } else if(selected.equals("Laniidae")) {
+                    mBirdNameSpinner.setAdapter(laniidaeAdapter);
+                } else if(selected.equals("Mimidae")) {
+                    mBirdNameSpinner.setAdapter(mimidaeAdapter);
+                } else if(selected.equals("Laridae")) {
+                    mBirdNameSpinner.setAdapter(laridaeAdapter);
+                } else if(selected.equals("Odontophoridae")) {
+                    mBirdNameSpinner.setAdapter(odontophoridaeAdapter);
+                } else if(selected.equals("Paridae")) {
+                    mBirdNameSpinner.setAdapter(paridaeAdapter);
+                } else if(selected.equals("Parulidae")) {
+                    mBirdNameSpinner.setAdapter(parulidaeAdapter);
+                } else if(selected.equals("Passeridae")) {
+                    mBirdNameSpinner.setAdapter(passeridaeAdapter);
+                } else if(selected.equals("Pelecanidae")) {
+                    mBirdNameSpinner.setAdapter(pelecanidaeAdapter);
+                } else if(selected.equals("Phalacrocoracidae")) {
+                    mBirdNameSpinner.setAdapter(phalacrocoracidaeAdapter);
+                } else if(selected.equals("Phasianidae")) {
+                    mBirdNameSpinner.setAdapter(phasiandaeAdapter);
+                } else if(selected.equals("Picidae")) {
+                    mBirdNameSpinner.setAdapter(picidaeAdapter);
+                } else if(selected.equals("Podicipedidae")) {
+                    mBirdNameSpinner.setAdapter(podicipedidaeAdapter);
+                } else if(selected.equals("Psittacidae")) {
+                    mBirdNameSpinner.setAdapter(psittacidaeAdapter);
+                } else if(selected.equals("Ptilogonatidae")) {
+                    mBirdNameSpinner.setAdapter(ptilogonatidaeAdapter);
+                } else if(selected.equals("Rallidae")) {
+                    mBirdNameSpinner.setAdapter(rallidaeAdapter);
+                } else if(selected.equals("Ramphastidae")) {
+                    mBirdNameSpinner.setAdapter(ramphastidaeAdapter);
+                } else if(selected.equals("Recurvirostridae")) {
+                    mBirdNameSpinner.setAdapter(recurvirostridaeAdapter);
+                } else if(selected.equals("Regulidae")) {
+                    mBirdNameSpinner.setAdapter(regulidaeAdapter);
+                } else if(selected.equals("Remizidae")) {
+                    mBirdNameSpinner.setAdapter(remizidaeAdapter);
+                } else if(selected.equals("Scolopacidae")) {
+                    mBirdNameSpinner.setAdapter(scolopacidaeAdapter);
+                } else if(selected.equals("Sittidae")) {
+                    mBirdNameSpinner.setAdapter(sittidaeAdapter);
+                } else if(selected.equals("Strigidae")) {
+                    mBirdNameSpinner.setAdapter(strigidaeAdapter);
+                } else if(selected.equals("Sulidae")) {
+                    mBirdNameSpinner.setAdapter(sulidaeAdapter);
+                } else if(selected.equals("Sturnidae")) {
+                    mBirdNameSpinner.setAdapter(sturnidaeAdapter);
+                } else if(selected.equals("Sylviidae")) {
+                    mBirdNameSpinner.setAdapter(sylviidaeAdapter);
+                } else if(selected.equals("Thraupidae")) {
+                    mBirdNameSpinner.setAdapter(thraupidaeAdapter);
+                } else if(selected.equals("Threskiornithidae")) {
+                    mBirdNameSpinner.setAdapter(threskiornithidaeAdapter);
+                } else if(selected.equals("Troglodytidae")) {
+                    mBirdNameSpinner.setAdapter(troglodytidaeAdapter);
+                } else if(selected.equals("Trogonidae")) {
+                    mBirdNameSpinner.setAdapter(trogonidaeAdapter);
+                } else if(selected.equals("Turdidae")) {
+                    mBirdNameSpinner.setAdapter(turdidaeAdapter);
+                } else if(selected.equals("Tyrannidae")) {
+                    mBirdNameSpinner.setAdapter(tyrannidaeAdapter);
+                } else if(selected.equals("Icteridae")) {
+                    mBirdNameSpinner.setAdapter(icteridaeAdapter);
                 }
             }
 
