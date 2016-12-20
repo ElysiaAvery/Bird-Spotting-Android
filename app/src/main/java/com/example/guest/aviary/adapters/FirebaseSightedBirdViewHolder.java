@@ -56,7 +56,7 @@ public class FirebaseSightedBirdViewHolder extends RecyclerView.ViewHolder imple
         mUserEmailTextView.setText("Spotted By: " + user.getEmail());
         mAddressTextView.setText(bird.getCity() + ", " + bird.getState() + " " + bird.getZip());
 
-        if(bird.getImageUrl().equals("not_specified")) {
+        if(bird.getImageUrl() == "not_specified") {
             Picasso.with(mContext)
                     .load(String.valueOf("No Image Yet!"))
                     .resize(MAX_WIDTH, MAX_HEIGHT)
