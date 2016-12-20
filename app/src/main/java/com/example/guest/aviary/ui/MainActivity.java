@@ -131,37 +131,19 @@ public class MainActivity extends AppCompatActivity
         finish();
     }
 
-//    public void onLaunchCamera() {
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-//            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-//        }
-//    }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            Bitmap imageBitmap = (Bitmap) extras.get("data");
-//            mImageLabel.setImageBitmap(imageBitmap);
-//            encodeBitmapAndSaveToFirebase(imageBitmap);
-//        }
-//    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_form) {
             Intent intent = new Intent(MainActivity.this, NewBirdActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+            Intent intent = new Intent(MainActivity.this, BirdsListActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_profile) {
 
         } else if (id == R.id.nav_share) {
 

@@ -38,7 +38,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.guest.aviary.ui.LogInActivity" />
         </activity>
-        <activity android:name=".ui.NewBirdActivity"></activity>
+        <activity android:name=".ui.NewBirdActivity" />
+        <activity android:name=".ui.BirdDetailActivity" />
+        <activity android:name=".ui.BirdsListActivity"></activity>
     </application>
 
 </manifest>

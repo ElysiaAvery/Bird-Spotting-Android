@@ -27,4 +27,7 @@
     <string name="bird_family">Select A Bird Family</string>
     <string name="bird_name">Select A Bird</string>
     <string name="bird_gender">Select A Bird\'s Gender</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
