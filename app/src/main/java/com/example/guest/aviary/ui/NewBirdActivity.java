@@ -3,6 +3,8 @@ package com.example.guest.aviary.ui;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class NewBirdActivity extends AppCompatActivity {
     @Bind(R.id.header) TextView mHeader;
-    @Bind(R.id.birdNameSpinner) Spinner mBirdName;
+    @Bind(R.id.birdNameSpinner) Spinner mBirdNameSpinner;
     @Bind(R.id.genderSpinner) Spinner mGenderSpinner;
     @Bind(R.id.birdFamilySpinner) Spinner mFamilySpinner;
     @Bind(R.id.cityEditText) EditText mCityText;
@@ -183,13 +185,31 @@ public class NewBirdActivity extends AppCompatActivity {
         Typeface elegantFont = Typeface.createFromAsset(getAssets(), "fonts/AquilineTwo.ttf");
         mHeader.setTypeface(elegantFont);
 
-        ArrayAdapter<String> familyAdapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> familyAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, familyArray);
         mFamilySpinner.setAdapter(familyAdapter);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, genderArray);
         mGenderSpinner.setAdapter(adapter);
 
+        mBirdNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String familyName = familyArray.get(i).toString();
+                setFamily(familyName);
+            }
+
+            private void setFamily(String familyName) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        }
     }
 }
