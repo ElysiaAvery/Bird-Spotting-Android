@@ -3,21 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context="com.example.guest.aviary.ui.NewBirdActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/swan"
+        android:scaleType="fitEnd"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/gradient"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/header"
-        android:textSize="50dp"
-        android:text="Sighting"
+        android:textColor="@color/colorPrimaryLight"
+        android:textSize="75dp"
+        android:layout_marginTop="-70dp"
+        android:text="Add a Sighting"
         android:gravity="center"
-        android:layout_margin="15dp"/>
+        android:layout_marginBottom="15dp"/>
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/birdNameSpinner"
+        android:id="@+id/birdFamilySpinner"
+        android:background="@color/colorPrimaryLight"
         android:layout_margin="5dp"
         android:layout_below="@+id/header"
         android:gravity="center" />
@@ -25,7 +41,17 @@
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/birdNameSpinner"
+        android:background="@color/colorPrimaryLight"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/birdFamilySpinner"
+        android:gravity="center" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/genderSpinner"
+        android:background="@color/colorPrimaryLight"
         android:layout_below="@+id/birdNameSpinner"
         android:layout_margin="5dp"
         android:gravity="center" />
@@ -33,6 +59,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryLight"
+        android:textColorHint="@color/colorPrimaryLight"
         android:id="@+id/cityEditText"
         android:layout_below="@+id/genderSpinner"
         android:layout_margin="5dp"
@@ -44,6 +72,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryLight"
+        android:textColorHint="@color/colorPrimaryLight"
         android:id="@+id/stateEditText"
         android:layout_below="@+id/cityEditText"
         android:layout_margin="5dp"
@@ -55,6 +85,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryLight"
+        android:textColorHint="@color/colorPrimaryLight"
         android:id="@+id/zipEditText"
         android:layout_below="@+id/stateEditText"
         android:layout_margin="5dp"
@@ -67,25 +99,37 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimaryLight"
         android:text="Add a Photo"
         android:layout_below="@+id/zipEditText"
         android:id="@+id/addPhotoButton"
-        android:layout_margin="5dp" />
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimaryLight"
         android:text="Add Audio Recording"
         android:layout_below="@+id/addPhotoButton"
         android:id="@+id/addAudioButton"
-        android:layout_margin="5dp" />
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryLight"
         android:text="Submit Sighting"
         android:layout_below="@+id/addAudioButton"
         android:id="@+id/submitButton"
-        android:layout_margin="5dp" />
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp" />
 
 </RelativeLayout>

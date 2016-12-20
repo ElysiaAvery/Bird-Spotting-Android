@@ -155,12 +155,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-//            switch (item.getItemId()) {
-//                    onLaunchCamera();
-//                default:
-//                    break;
-//            }
-//            return false;
+            Intent intent = new Intent(MainActivity.this, NewBirdActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
