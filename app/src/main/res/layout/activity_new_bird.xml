@@ -26,12 +26,13 @@
         android:textSize="75dp"
         android:layout_marginTop="-70dp"
         android:text="Add a Sighting"
-        android:gravity="center"
-        android:layout_marginBottom="15dp"/>
+        android:gravity="center" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:prompt="@string/bird_family"
         android:id="@+id/birdFamilySpinner"
         android:background="@color/colorPrimaryLight"
         android:layout_margin="5dp"
@@ -41,6 +42,8 @@
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:prompt="@string/bird_name"
         android:id="@+id/birdNameSpinner"
         android:background="@color/colorPrimaryLight"
         android:layout_margin="5dp"
@@ -50,6 +53,8 @@
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:prompt="@string/bird_gender"
         android:id="@+id/genderSpinner"
         android:background="@color/colorPrimaryLight"
         android:layout_below="@+id/birdNameSpinner"

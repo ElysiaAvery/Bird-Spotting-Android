@@ -24,4 +24,7 @@
     <string name="auth_failed">Authorization Failed.</string>
     <string name="forgot_password_msg">We just need your registered Email and we\'ll send you password reset instructions.</string>
     <string name="btn_reset_password">Reset Password</string>
+    <string name="bird_family">Select A Bird Family</string>
+    <string name="bird_name">Select A Bird</string>
+    <string name="bird_gender">Select A Bird\'s Gender</string>
 </resources>

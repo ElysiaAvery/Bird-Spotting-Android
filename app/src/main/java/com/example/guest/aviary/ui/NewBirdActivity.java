@@ -4,12 +4,14 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.guest.aviary.R;
 import com.google.firebase.auth.api.model.StringList;
@@ -189,27 +191,31 @@ public class NewBirdActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, familyArray);
         mFamilySpinner.setAdapter(familyAdapter);
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, genderArray);
-        mGenderSpinner.setAdapter(adapter);
+        final ArrayAdapter<String> birdAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, anatidaeArray);
 
-        mBirdNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        mFamilySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String familyName = familyArray.get(i).toString();
-                setFamily(familyName);
-            }
-
-            private void setFamily(String familyName) {
-
+                String selected = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(NewBirdActivity.this, "Hello Toast",Toast.LENGTH_SHORT).show();
+                if(selected.equals("Anatidae")){
+                    mBirdNameSpinner.setAdapter(birdAdapter);
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
+        });
+        mFamilySpinner.performClick();
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, genderArray);
+        mGenderSpinner.setAdapter(adapter);
 
-        }
     }
+
 }
