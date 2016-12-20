@@ -8,6 +8,7 @@ import org.parceler.Parcel;
 @Parcel
 public class Bird {
     String name;
+    String family;
     String gender;
     String city;
     String state;
@@ -19,8 +20,9 @@ public class Bird {
 
     public Bird() {}
 
-    public Bird(String name, String gender, String city, String state, String zip) {
+    public Bird(String name, String family, String gender, String city, String state, String zip) {
         this.name = name;
+        this.family = family;
         this.gender = gender;
         this.city = city;
         this.state =state;
@@ -36,6 +38,14 @@ public class Bird {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFamily() {
+        return family;
+    }
+
+    public void setFamily(String family) {
+        this.family = family;
     }
 
     public String getGender() {

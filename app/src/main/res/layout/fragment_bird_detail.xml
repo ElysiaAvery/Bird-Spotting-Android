@@ -1,0 +1,78 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.example.guest.aviary.ui.BirdDetailFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/birdImageView" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nameTextView"
+            android:layout_below="@+id/birdImageView"
+            android:textColor="@color/colorWhite"
+            android:textSize="40dp"
+            android:text="Bird Name"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/familyTextView"
+            android:layout_below="@+id/nameTextView"
+            android:textColor="@color/colorWhite"
+            android:textSize="30dp"
+            android:text="Bird Name"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/infoTextView"
+            android:drawableLeft="@mipmap/ic_feather"
+            android:layout_below="@+id/familyTextView"
+            android:textColor="@color/colorWhite"
+            android:textSize="25dp"
+            android:text="Further Reading"
+            android:gravity="left"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/genderTextView"
+            android:layout_below="@+id/infoTextView"
+            android:textColor="@color/colorWhite"
+            android:textSize="25dp"
+            android:text="Bird Gender"
+            android:gravity="left"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Photo"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/photoButton"
+            android:layout_below="@+id/genderTextView"
+            android:background="@color/colorPrimaryDark"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Audio"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/audioButton"
+            android:layout_below="@+id/photoButton"
+            android:background="@color/colorPrimaryDark"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

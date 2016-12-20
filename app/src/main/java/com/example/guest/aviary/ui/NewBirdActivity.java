@@ -508,6 +508,7 @@ public class NewBirdActivity extends AppCompatActivity implements View.OnClickLi
 
     private void createNewSighting() {
         final String name = mBirdNameSpinner.getSelectedItem().toString();
+        final String family = mFamilySpinner.getSelectedItem().toString();
         final String gender = mGenderSpinner.getSelectedItem().toString();
         final String city = mCityText.getText().toString().trim();
         final String state = mStateText.getText().toString().trim();
@@ -516,7 +517,7 @@ public class NewBirdActivity extends AppCompatActivity implements View.OnClickLi
         boolean validState = isValidState(state);
         boolean validZip = isValidZip(zip);
         if(!validCity || !validState || !validZip) return;
-        mBird = new Bird(name, gender, city, state, zip);
+        mBird = new Bird(name, family, gender, city, state, zip);
         mBirdReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_BIRD_QUERY);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();

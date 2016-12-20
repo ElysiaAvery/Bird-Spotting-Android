@@ -56,9 +56,9 @@ public class FirebaseSightedBirdViewHolder extends RecyclerView.ViewHolder imple
         mUserEmailTextView.setText("Spotted By: " + user.getEmail());
         mAddressTextView.setText(bird.getCity() + ", " + bird.getState() + " " + bird.getZip());
 
-        if(bird.getImageUrl() == "not_specified") {
+        if(bird.getImageUrl().equals("not_specified")) {
             Picasso.with(mContext)
-                    .load(String.valueOf("No Image Yet!"))
+                    .load("http://borderspringsfarm.com/shop/wp-content/uploads/2013/06/no-image-yet1.jpg")
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .centerCrop()
                     .into(mBirdImageView);
@@ -74,7 +74,9 @@ public class FirebaseSightedBirdViewHolder extends RecyclerView.ViewHolder imple
     @Override
     public void onClick(View v) {
         final ArrayList<Bird> birds = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_BIRD_QUERY);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_BIRD_QUERY).child(uid);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -86,7 +88,7 @@ public class FirebaseSightedBirdViewHolder extends RecyclerView.ViewHolder imple
 
                 Intent intent = new Intent(mContext, BirdDetailActivity.class);
                 intent.putExtra("position", itemPosition + "");
-                intent.putExtra("restaurants", Parcels.wrap(birds));
+                intent.putExtra("birds", Parcels.wrap(birds));
 
                 mContext.startActivity(intent);
             }
