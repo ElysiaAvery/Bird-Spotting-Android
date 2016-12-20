@@ -104,34 +104,10 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorPrimaryLight"
-        android:text="Add a Photo"
-        android:layout_below="@+id/zipEditText"
-        android:id="@+id/addPhotoButton"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginRight="55dp"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorPrimaryLight"
-        android:text="Add Audio Recording"
-        android:layout_below="@+id/addPhotoButton"
-        android:id="@+id/addAudioButton"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginRight="55dp" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:textColor="@color/colorPrimaryLight"
         android:text="Submit Sighting"
-        android:layout_below="@+id/addAudioButton"
+        android:layout_below="@+id/zipEditText"
         android:id="@+id/submitButton"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="55dp"

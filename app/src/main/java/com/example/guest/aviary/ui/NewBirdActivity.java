@@ -1,5 +1,7 @@
 package com.example.guest.aviary.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,8 +15,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guest.aviary.Constants;
 import com.example.guest.aviary.R;
+import com.example.guest.aviary.models.Bird;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.api.model.StringList;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +30,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class NewBirdActivity extends AppCompatActivity {
+public class NewBirdActivity extends AppCompatActivity implements View.OnClickListener{
     @Bind(R.id.header) TextView mHeader;
     @Bind(R.id.birdNameSpinner) Spinner mBirdNameSpinner;
     @Bind(R.id.genderSpinner) Spinner mGenderSpinner;
@@ -30,9 +38,9 @@ public class NewBirdActivity extends AppCompatActivity {
     @Bind(R.id.cityEditText) EditText mCityText;
     @Bind(R.id.stateEditText) EditText mStateText;
     @Bind(R.id.zipEditText) EditText mZipText;
-    @Bind(R.id.addPhotoButton) Button mPhoto;
-    @Bind(R.id.addAudioButton) Button mAudio;
     @Bind(R.id.submitButton) Button mSubmit;
+    private DatabaseReference mBirdReference;
+    private Bird mBird;
     final String[] genderArray = {"Male", "Female", "Other", "Unknown"};
     final String[] familyArray = {"Not Sure", "Accipitridae", "Alcedinidae", "Alcidae", "Anatidae", "Ardeidae", "Bombycillidae", "Cardinalidae",
             "Cathartidae", "Caprimulgidae", "Certhiidae", "Charadriidae", "Cinclidae", "Columbidae", "Corvidae",
@@ -179,12 +187,12 @@ public class NewBirdActivity extends AppCompatActivity {
 
     final String[] trogonidaeArray = {"Black-headed Trogon", "Elegant Trogon", "Resplendent Quetzal", "Slaty-tailed Trogon", "Violaceous Trogon"};
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_bird);
         ButterKnife.bind(this);
-
 
         Typeface elegantFont = Typeface.createFromAsset(getAssets(), "fonts/AquilineTwo.ttf");
         mHeader.setTypeface(elegantFont);
@@ -192,6 +200,10 @@ public class NewBirdActivity extends AppCompatActivity {
         final ArrayAdapter<String> familyAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, familyArray);
         mFamilySpinner.setAdapter(familyAdapter);
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, genderArray);
+        mGenderSpinner.setAdapter(adapter);
 
         final ArrayAdapter<String> anatidaeAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, anatidaeArray);
@@ -489,10 +501,67 @@ public class NewBirdActivity extends AppCompatActivity {
             }
         });
         mFamilySpinner.performClick();
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, genderArray);
-        mGenderSpinner.setAdapter(adapter);
+
+        mSubmit.setOnClickListener(this);
 
     }
 
+    private void createNewSighting() {
+        final String name = mBirdNameSpinner.getSelectedItem().toString();
+        final String gender = mGenderSpinner.getSelectedItem().toString();
+        final String city = mCityText.getText().toString().trim();
+        final String state = mStateText.getText().toString().trim();
+        final String zip = mZipText.getText().toString().trim();
+        boolean validCity = isValidCity(city);
+        boolean validState = isValidState(state);
+        boolean validZip = isValidZip(zip);
+        if(!validCity || !validState || !validZip) return;
+        mBird = new Bird(name, gender, city, state, zip);
+        mBirdReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_BIRD_QUERY);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        DatabaseReference contactRef = FirebaseDatabase
+                .getInstance()
+                .getReference(Constants.FIREBASE_BIRD_QUERY)
+                .child(uid);
+        DatabaseReference pushRef = contactRef.push();
+        String pushId = pushRef.getKey();
+        mBird.setPushId(pushId);
+        pushRef.setValue(mBird);
+        Context context = getApplicationContext();
+        Intent intent = new Intent(NewBirdActivity.this, MainActivity.class);
+        Toast.makeText(NewBirdActivity.this, "Successfully added bird to your sightings! Go add a photo or audio!",Toast.LENGTH_LONG).show();
+        startActivity(intent);
+    }
+
+    private boolean isValidCity(String name) {
+        if (name.equals("") || name.equals(" ")) {
+            mCityText.setError("Please enter a valid City Name!");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidState(String city) {
+        if (city.equals("") || city.equals(" ")) {
+            mStateText.setError("Please enter a valid State!");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidZip(String zip) {
+        if (zip.equals("") || zip.equals(" ")) {
+            mStateText.setError("Please enter a valid Zip Code!");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == mSubmit) {
+            createNewSighting();
+        }
+    }
 }
