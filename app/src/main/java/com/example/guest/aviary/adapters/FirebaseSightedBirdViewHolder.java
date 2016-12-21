@@ -36,6 +36,7 @@ import butterknife.Bind;
 public class FirebaseSightedBirdViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private static final int MAX_WIDTH = 225;
     private static final int MAX_HEIGHT = 225;
+    public ImageView mBirdImageView;
 
     View mView;
     Context mContext;
@@ -52,7 +53,7 @@ public class FirebaseSightedBirdViewHolder extends RecyclerView.ViewHolder imple
         TextView mGenderTextView = (TextView) mView.findViewById(R.id.genderTextView);
         TextView mUserEmailTextView = (TextView) mView.findViewById(R.id.userEmailTextView);
         TextView mAddressTextView = (TextView) mView.findViewById(R.id.addressTextView);
-        ImageView mBirdImageView = (ImageView) mView.findViewById(R.id.birdImageView);
+        mBirdImageView = (ImageView) mView.findViewById(R.id.birdImageView);
 
         if (!bird.getImageUrl().contains("not_specified")) {
             try {
