@@ -16,13 +16,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class BirdsListActivity extends AppCompatActivity {
-    private DatabaseReference mBirdReference;
+    private DatabaseReference mRestaurantReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -30,16 +32,22 @@ public class BirdsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_birds_list);
         ButterKnife.bind(this);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mRestaurantReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_BIRD_QUERY).child(uid);
         setUpFirebaseAdapter();
     }
 
     private void setUpFirebaseAdapter() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-        mBirdReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_BIRD_QUERY).child(uid);
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Bird, FirebaseSightedBirdViewHolder>(Bird.class, R.layout.bird_list_item, FirebaseSightedBirdViewHolder.class, mBirdReference) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Bird, FirebaseSightedBirdViewHolder>
+                (Bird.class, R.layout.bird_list_item, FirebaseSightedBirdViewHolder.class,
+                        mRestaurantReference) {
+
             @Override
             protected void populateViewHolder(FirebaseSightedBirdViewHolder viewHolder, Bird model, int position) {
                 viewHolder.bindBird(model);
@@ -48,7 +56,6 @@ public class BirdsListActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mFirebaseAdapter);
-
     }
 
     @Override
@@ -56,4 +63,5 @@ public class BirdsListActivity extends AppCompatActivity {
         super.onDestroy();
         mFirebaseAdapter.cleanup();
     }
+
 }

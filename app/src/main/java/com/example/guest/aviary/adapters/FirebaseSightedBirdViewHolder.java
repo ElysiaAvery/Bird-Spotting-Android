@@ -62,9 +62,9 @@ public class FirebaseSightedBirdViewHolder extends RecyclerView.ViewHolder imple
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else {
+        }else if (bird.getImageUrl().contains("not_specified")) {
             Picasso.with(mContext)
-                    .load(String.valueOf(bird.getImageUrl()))
+                    .load("http://icons.iconarchive.com/icons/icons8/windows-8/512/City-No-Camera-icon.png")
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .centerCrop()
                     .into(mBirdImageView);
