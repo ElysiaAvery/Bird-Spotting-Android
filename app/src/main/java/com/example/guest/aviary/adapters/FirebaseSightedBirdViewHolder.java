@@ -2,7 +2,10 @@ package com.example.guest.aviary.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +25,7 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -50,25 +54,37 @@ public class FirebaseSightedBirdViewHolder extends RecyclerView.ViewHolder imple
         TextView mAddressTextView = (TextView) mView.findViewById(R.id.addressTextView);
         ImageView mBirdImageView = (ImageView) mView.findViewById(R.id.birdImageView);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        mNameTextView.setText(bird.getName());
-        mGenderTextView.setText(bird.getGender());
-        mUserEmailTextView.setText("Spotted By: " + user.getEmail());
-        mAddressTextView.setText(bird.getCity() + ", " + bird.getState() + " " + bird.getZip());
-
-        if(bird.getImageUrl().equals("not_specified")) {
-            Picasso.with(mContext)
-                    .load("http://borderspringsfarm.com/shop/wp-content/uploads/2013/06/no-image-yet1.jpg")
-                    .resize(MAX_WIDTH, MAX_HEIGHT)
-                    .centerCrop()
-                    .into(mBirdImageView);
-        } else {
+        if (!bird.getImageUrl().contains("not_specified")) {
+            try {
+                Bitmap imageBitmap = decodeFromFirebaseBase64(bird.getImageUrl());
+                mBirdImageView.setImageBitmap(imageBitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
             Picasso.with(mContext)
                     .load(String.valueOf(bird.getImageUrl()))
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .centerCrop()
                     .into(mBirdImageView);
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            mNameTextView.setText(bird.getName());
+            mGenderTextView.setText(bird.getGender());
+            mUserEmailTextView.setText("Spotted By: " + user.getEmail());
+            mAddressTextView.setText(bird.getCity() + ", " + bird.getState() + " " + bird.getZip());
         }
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mNameTextView.setText(bird.getName());
+        mGenderTextView.setText(bird.getGender());
+        mUserEmailTextView.setText("Spotted By: " + user.getEmail());
+        mAddressTextView.setText(bird.getCity() + ", " + bird.getState() + " " + bird.getZip());
+    }
+
+    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+        byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
     }
 
     @Override
