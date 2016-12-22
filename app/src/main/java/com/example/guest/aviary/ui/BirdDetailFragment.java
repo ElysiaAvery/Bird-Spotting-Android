@@ -72,9 +72,10 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
     private Bird mBird;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
-    StorageReference storageRef = null;
-    MediaPlayer mMediaPlayer;
     Uri downloadUrl;
+    public StorageReference storageRef;
+    MediaPlayer mMediaPlayer;
+
 
 
 
