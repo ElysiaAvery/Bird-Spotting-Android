@@ -1,10 +1,16 @@
 package com.example.guest.aviary.ui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaRecorder;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -18,12 +24,18 @@ import android.widget.Toast;
 import com.example.guest.aviary.Constants;
 import com.example.guest.aviary.R;
 import com.example.guest.aviary.models.Bird;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.api.model.StringList;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +51,13 @@ public class NewBirdActivity extends AppCompatActivity implements View.OnClickLi
     @Bind(R.id.stateEditText) EditText mStateText;
     @Bind(R.id.zipEditText) EditText mZipText;
     @Bind(R.id.submitButton) Button mSubmit;
+    @Bind(R.id.audioButton) Button mAudioButton;
+    private static String mFileName = null;
+    private MediaRecorder mRecorder = null;
     private DatabaseReference mBirdReference;
+    private StorageReference mStorage;
+    private ProgressDialog mProgress;
+    Uri downloadUrl;
     private Bird mBird;
     final String[] genderArray = {"Male", "Female", "Other", "Unknown"};
     final String[] familyArray = {"Not Sure", "Accipitridae", "Alcedinidae", "Alcidae", "Anatidae", "Ardeidae", "Bombycillidae", "Cardinalidae",
@@ -194,8 +212,35 @@ public class NewBirdActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_new_bird);
         ButterKnife.bind(this);
 
-        Typeface elegantFont = Typeface.createFromAsset(getAssets(), "fonts/AquilineTwo.ttf");
+        Typeface elegantFont = Typeface.createFromAsset(getAssets(), "fonts/Alegreya.otf");
         mHeader.setTypeface(elegantFont);
+        Typeface regularFont = Typeface.createFromAsset(getAssets(), "fonts/regular.otf");
+        mSubmit.setTypeface(regularFont);
+        mCityText.setTypeface(regularFont);
+        mStateText.setTypeface(regularFont);
+        mZipText.setTypeface(regularFont);
+        mAudioButton.setTypeface(regularFont);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
+        mFileName += "/birdRecording" + Math.random() + uid + ".3gp";
+        mStorage = FirebaseStorage.getInstance().getReference();
+        mProgress = new ProgressDialog(this);
+        mAudioButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    startRecording();
+                    Log.e("recording", "start");
+
+                }else if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    stopRecording();
+                    Log.e("recording", "stop");
+                }
+                return false;
+            }
+        });
 
         final ArrayAdapter<String> familyAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, familyArray);
@@ -506,6 +551,48 @@ public class NewBirdActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
+    private void startRecording() {
+        mRecorder = new MediaRecorder();
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFile(mFileName);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
+        try {
+            mRecorder.prepare();
+        } catch (IOException e) {
+            Log.e("this", "prepare() failed");
+        }
+
+        mRecorder.start();
+    }
+
+    private void stopRecording() {
+        mRecorder.stop();
+        mRecorder.release();
+        mRecorder = null;
+        uploadAudio();
+    }
+
+    private void uploadAudio() {
+        mProgress.setMessage("uploading audio...");
+        mProgress.show();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        StorageReference filepath = mStorage.child("Audio").child("birdRecording" + Math.random() + uid + ".3gp");
+
+        Uri uri = Uri.fromFile(new File(mFileName));
+
+        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                mProgress.dismiss();
+                downloadUrl = taskSnapshot.getDownloadUrl();
+                Log.e("here", downloadUrl.toString());
+            }
+        });
+    }
+
     private void createNewSighting() {
         final String name = mBirdNameSpinner.getSelectedItem().toString();
         final String family = mFamilySpinner.getSelectedItem().toString();
@@ -513,11 +600,13 @@ public class NewBirdActivity extends AppCompatActivity implements View.OnClickLi
         final String city = mCityText.getText().toString().trim();
         final String state = mStateText.getText().toString().trim();
         final String zip = mZipText.getText().toString().trim();
+        final String birdSoundUrls = downloadUrl.toString().trim();
         boolean validCity = isValidCity(city);
         boolean validState = isValidState(state);
         boolean validZip = isValidZip(zip);
-        if(!validCity || !validState || !validZip) return;
-        mBird = new Bird(name, family, gender, city, state, zip);
+        boolean validNoise = isValidBirdSound(birdSoundUrls);
+        if(!validCity || !validState || !validZip || !validNoise) return;
+        mBird = new Bird(name, family, gender, city, state, zip, birdSoundUrls);
         mBirdReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_BIRD_QUERY);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
@@ -554,6 +643,14 @@ public class NewBirdActivity extends AppCompatActivity implements View.OnClickLi
     private boolean isValidZip(String zip) {
         if (zip.equals("") || zip.equals(" ")) {
             mStateText.setError("Please enter a valid Zip Code!");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidBirdSound(String birdSoundUrls) {
+        if (birdSoundUrls.equals("") || birdSoundUrls.equals(" ")) {
+            mAudioButton.setError("Please upload audio!");
             return false;
         }
         return true;

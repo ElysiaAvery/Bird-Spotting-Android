@@ -23,9 +23,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/header"
         android:textColor="@color/colorPrimaryLight"
-        android:textSize="75dp"
-        android:layout_marginTop="-70dp"
+        android:textSize="60dp"
         android:text="Add a Sighting"
+        android:layout_marginBottom="15dp"
         android:gravity="center" />
 
     <Spinner
@@ -106,11 +106,18 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:textColor="@color/colorPrimaryLight"
+        android:text="Add Audio"
+        android:id="@+id/audioButton"
+        android:layout_above="@+id/submitButton" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimaryLight"
         android:text="Submit Sighting"
-        android:layout_below="@+id/zipEditText"
         android:id="@+id/submitButton"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginRight="55dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

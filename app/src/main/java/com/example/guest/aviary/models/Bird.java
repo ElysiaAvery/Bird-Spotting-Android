@@ -23,7 +23,7 @@ public class Bird {
 
     public Bird() {}
 
-    public Bird(String name, String family, String gender, String city, String state, String zip) {
+    public Bird(String name, String family, String gender, String city, String state, String zip, String birdSoundUrls) {
         this.name = name;
         this.family = family;
         this.gender = gender;
@@ -32,7 +32,7 @@ public class Bird {
         this.zip = zip;
         this.imageUrl = "not_specified";
         this.index = "not_specified";
-        this.birdSoundUrls = "not_specified";
+        this.birdSoundUrls = birdSoundUrls;
     }
 
     public String getName() {

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
@@ -64,7 +65,6 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
     Button mPhotoButton;
     @Bind(R.id.audioButton) Button mAudioButton;
     @Bind(R.id.playAudio) Button mPlayAudio;
-    @Bind(R.id.stopAudio) Button mStopAudio;
     private static String mFileName = null;
     private MediaRecorder mRecorder = null;
 
@@ -163,9 +163,17 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
         mGenderTextView.setText(mBird.getGender());
         mInfoTextView.setText("Get Further information about the " + mBird.getName() + "...");
 
+        Typeface elegantFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Alegreya.otf");
+        mNameTextView.setTypeface(elegantFont);
+        Typeface regularFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/regular.otf");
+        mGenderTextView.setTypeface(regularFont);
+        mInfoTextView.setTypeface(regularFont);
+        mPhotoButton.setTypeface(regularFont);
+        mPlayAudio.setTypeface(regularFont);
+        mAudioButton.setTypeface(regularFont);
+
         mInfoTextView.setOnClickListener(this);
         mPhotoButton.setOnClickListener(this);
-        mStopAudio.setOnClickListener(this);
 
         return view;
     }
