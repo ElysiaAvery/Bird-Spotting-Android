@@ -13,24 +13,39 @@
             android:layout_height="200dp"
             android:id="@+id/birdImageView" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/nameTextView"
             android:layout_below="@+id/birdImageView"
-            android:textColor="@color/colorWhite"
-            android:textSize="40dp"
-            android:text="Bird Name"
-            android:gravity="center"/>
+            android:orientation="horizontal"
+            android:id="@+id/linearView">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameTextView"
+                android:textColor="@color/colorWhite"
+                android:textSize="40dp"
+                android:text="Bird Name"
+                android:layout_marginLeft="90dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/genderTextView"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp"
+                android:text="Bird Gender" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/familyTextView"
-            android:layout_below="@+id/nameTextView"
+            android:layout_below="@+id/linearView"
             android:textColor="@color/colorWhite"
-            android:textSize="30dp"
-            android:text="Bird Name"
+            android:textSize="20dp"
+            android:textStyle="italic"
+            android:text="Bird Family"
             android:gravity="center"/>
 
         <TextView
@@ -40,29 +55,38 @@
             android:drawableLeft="@mipmap/ic_feather"
             android:layout_below="@+id/familyTextView"
             android:textColor="@color/colorWhite"
-            android:textSize="25dp"
+            android:textSize="15dp"
             android:text="Further Reading"
-            android:gravity="left"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/genderTextView"
-            android:layout_below="@+id/infoTextView"
-            android:textColor="@color/colorWhite"
-            android:textSize="25dp"
-            android:text="Bird Gender"
             android:gravity="left"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Play Audio"
+            android:layout_below="@+id/infoTextView"
+            android:background="@color/colorPrimaryLight"
+            android:id="@+id/playAudio"
+            android:gravity="center"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stop Audio"
+            android:layout_below="@+id/playAudio"
+            android:background="@color/colorPrimaryLight"
+            android:id="@+id/stopAudio"
+            android:gravity="center"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Add Photo"
-            android:layout_marginTop="30dp"
             android:textColor="@color/colorWhite"
             android:id="@+id/photoButton"
-            android:layout_below="@+id/genderTextView"
-            android:background="@color/colorPrimaryDark"/>
+            android:background="@color/colorPrimaryDark"
+            android:layout_below="@+id/stopAudio"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:layout_width="match_parent"
