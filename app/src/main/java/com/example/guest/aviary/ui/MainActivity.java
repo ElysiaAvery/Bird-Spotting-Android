@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.guest.aviary.R;
@@ -28,9 +29,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener , View.OnClickListener{
     @Bind(R.id.header) TextView mHeader;
     @Bind(R.id.addText) TextView mAddText;
+    @Bind(R.id.sightingButton) Button mSightingButton;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -50,6 +52,10 @@ public class MainActivity extends AppCompatActivity
         mHeader.setTypeface(elegantFont);
         Typeface sansFont = Typeface.createFromAsset(getAssets(), "fonts/valencia.otf");
         mAddText.setTypeface(sansFont);
+        Typeface regularFont = Typeface.createFromAsset(getAssets(), "fonts/regular.otf");
+        mSightingButton.setTypeface(regularFont);
+
+        mSightingButton.setOnClickListener(this);
 
         if (mFirebaseUser == null) {
             // Not logged in, launch the Log In activity
@@ -94,6 +100,14 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == mSightingButton) {
+            Intent intent = new Intent(MainActivity.this, NewBirdActivity.class);
+            startActivity(intent);
         }
     }
 

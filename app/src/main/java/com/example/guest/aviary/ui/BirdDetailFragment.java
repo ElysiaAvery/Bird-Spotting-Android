@@ -152,7 +152,7 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
             }
         } else {
             Picasso.with(view.getContext())
-                    .load(String.valueOf(mBird.getImageUrl()))
+                    .load(String.valueOf("http://www.amfmph.com/wp-content/plugins/social-media-builder//img/no-image.png"))
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .centerCrop()
                     .into(mBirdImageView);
