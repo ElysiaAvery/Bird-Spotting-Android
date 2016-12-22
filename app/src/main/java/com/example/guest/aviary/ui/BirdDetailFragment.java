@@ -74,7 +74,6 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
     private StorageReference mStorage;
     private ProgressDialog mProgress;
     Uri downloadUrl;
-    public StorageReference storageRef;
     MediaPlayer mMediaPlayer;
 
 
@@ -185,7 +184,6 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
             startActivity(webIntent);
         } else if(v == mPhotoButton) {
             onLaunchCamera();
-
         }
     }
 
@@ -262,6 +260,8 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
                         .child(mBird.getPushId())
                         .child("birdSoundUrls");
                 ref.setValue(birdSound);
+                Intent intent = new Intent(getActivity(), BirdsListActivity.class);
+                startActivity(intent);
                 Log.e("here", downloadUrl.toString());
             }
         });
