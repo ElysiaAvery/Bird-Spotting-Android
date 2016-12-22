@@ -149,7 +149,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, BirdsListActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
-
+            Intent intent = new Intent(MainActivity.this, UserActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

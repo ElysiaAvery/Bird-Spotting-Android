@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.View;
@@ -54,6 +55,13 @@ public class FirebaseSightedBirdViewHolder extends RecyclerView.ViewHolder imple
         TextView mUserEmailTextView = (TextView) mView.findViewById(R.id.userEmailTextView);
         TextView mAddressTextView = (TextView) mView.findViewById(R.id.addressTextView);
         mBirdImageView = (ImageView) mView.findViewById(R.id.birdImageView);
+
+        Typeface sansFont = Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/Alegreya.otf");
+        mNameTextView.setTypeface(sansFont);
+        Typeface regularFont = Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/regular.otf");
+        mGenderTextView.setTypeface(regularFont);
+        mUserEmailTextView.setTypeface(regularFont);
+        mAddressTextView.setTypeface(regularFont);
 
         if (!bird.getImageUrl().contains("not_specified")) {
             try {

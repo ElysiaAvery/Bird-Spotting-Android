@@ -24,7 +24,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class BirdsListActivity extends AppCompatActivity {
-    private DatabaseReference mRestaurantReference;
+    private DatabaseReference mBirdReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -39,14 +39,14 @@ public class BirdsListActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
-        mRestaurantReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_BIRD_QUERY).child(uid);
+        mBirdReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_BIRD_QUERY).child(uid);
         setUpFirebaseAdapter();
     }
 
     private void setUpFirebaseAdapter() {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Bird, FirebaseSightedBirdViewHolder>
                 (Bird.class, R.layout.bird_list_item, FirebaseSightedBirdViewHolder.class,
-                        mRestaurantReference) {
+                        mBirdReference) {
 
             @Override
             protected void populateViewHolder(FirebaseSightedBirdViewHolder viewHolder, Bird model, int position) {
