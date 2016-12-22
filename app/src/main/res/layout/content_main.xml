@@ -16,6 +16,13 @@
 
     <ImageView
         android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-100dp"
+        android:layout_height="200dp"
+        android:background="@drawable/transparent_triangle"/>
+
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_marginTop="-30dp"
         android:layout_height="300dp"
         android:src="@drawable/circle_overlay"/>
