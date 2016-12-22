@@ -25,8 +25,7 @@
                 android:id="@+id/nameTextView"
                 android:textColor="@color/colorWhite"
                 android:textSize="40dp"
-                android:text="Bird Name"
-                android:layout_marginLeft="90dp"/>
+                android:text="Bird Name" />
 
             <TextView
                 android:layout_width="wrap_content"

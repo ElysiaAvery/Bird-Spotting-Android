@@ -2,6 +2,9 @@ package com.example.guest.aviary.models;
 
 import org.parceler.Parcel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Guest on 12/19/16.
  */
@@ -14,9 +17,9 @@ public class Bird {
     String state;
     String zip;
     String imageUrl;
-    String audioFile;
     private String pushId;
     String index;
+    String birdSoundUrls;
 
     public Bird() {}
 
@@ -28,8 +31,8 @@ public class Bird {
         this.state =state;
         this.zip = zip;
         this.imageUrl = "not_specified";
-        this.audioFile = "not_specified;";
         this.index = "not_specified";
+        this.birdSoundUrls = "not_specified";
     }
 
     public String getName() {
@@ -88,14 +91,6 @@ public class Bird {
         this.imageUrl = imageUrl;
     }
 
-    public String getAudioFile() {
-        return audioFile;
-    }
-
-    public void setAudioFile(String audioFile) {
-        this.audioFile = audioFile;
-    }
-
     public String getPushId() {
         return pushId;
     }
@@ -110,5 +105,13 @@ public class Bird {
 
     public void setIndex(String index) {
         this.index = index;
+    }
+
+    public String getBirdSoundUrls() {
+        return birdSoundUrls;
+    }
+
+    public void setBirdSoundUrls(String birdSoundUrls) {
+        this.birdSoundUrls = birdSoundUrls;
     }
 }

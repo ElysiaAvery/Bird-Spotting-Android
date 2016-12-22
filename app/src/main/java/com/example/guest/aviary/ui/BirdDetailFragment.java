@@ -32,6 +32,7 @@ import com.example.guest.aviary.R;
 import com.example.guest.aviary.models.Bird;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -83,10 +84,10 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
         // Required empty public constructor
     }
 
-    public static BirdDetailFragment newInstance(Bird restaurant) {
+    public static BirdDetailFragment newInstance(Bird bird) {
         BirdDetailFragment restaurantDetailFragment = new BirdDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("birds", Parcels.wrap(restaurant));
+        args.putParcelable("birds", Parcels.wrap(bird));
         restaurantDetailFragment.setArguments(args);
         return restaurantDetailFragment;
     }
@@ -104,8 +105,10 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bird_detail, container, false);
         ButterKnife.bind(this, view);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-        mFileName += "/birdRecording.3gp";
+        mFileName += "/birdRecording" + mBird.getName() + uid + ".3gp";
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgress = new ProgressDialog(getActivity());
         mAudioButton.setOnTouchListener(new View.OnTouchListener() {
@@ -241,7 +244,9 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
     private void uploadAudio() {
         mProgress.setMessage("uploading audio...");
         mProgress.show();
-        StorageReference filepath = mStorage.child("Audio").child("birdRecording.3gp");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        StorageReference filepath = mStorage.child("Audio").child("birdRecording" + mBird.getName() + uid + ".3gp");
 
         Uri uri = Uri.fromFile(new File(mFileName));
 
@@ -250,13 +255,21 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 mProgress.dismiss();
                 downloadUrl = taskSnapshot.getDownloadUrl();
+                String birdSound = downloadUrl.toString().trim();
+                DatabaseReference ref = FirebaseDatabase.getInstance()
+                        .getReference(Constants.FIREBASE_BIRD_QUERY)
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child(mBird.getPushId())
+                        .child("birdSoundUrls");
+                ref.setValue(birdSound);
                 Log.e("here", downloadUrl.toString());
             }
         });
     }
 
     private void getAudio() throws IOException {
-        String url = downloadUrl.toString() ;
+        String url = mBird.getBirdSoundUrls();
+        Log.v("the url looks like: ", url);
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setDataSource(url);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -267,7 +280,7 @@ public class BirdDetailFragment extends Fragment implements View.OnClickListener
             public void run() {
                 mMediaPlayer.start();
             }
-        }, 1500);
+        }, 1000);
 
     }
 
