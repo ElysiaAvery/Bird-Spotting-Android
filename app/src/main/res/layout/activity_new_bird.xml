@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:textColor="@color/colorPrimaryLight"
-        android:text="Add Audio"
+        android:text="Add Audio - Please hold down -"
         android:id="@+id/audioButton"
         android:layout_above="@+id/submitButton" />
 

@@ -35,8 +35,8 @@ import butterknife.Bind;
  * Created by Guest on 12/20/16.
  */
 public class FirebaseSightedBirdViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    private static final int MAX_WIDTH = 225;
-    private static final int MAX_HEIGHT = 225;
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
     public ImageView mBirdImageView;
 
     View mView;

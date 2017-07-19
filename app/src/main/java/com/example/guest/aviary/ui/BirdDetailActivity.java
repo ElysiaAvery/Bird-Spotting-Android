@@ -37,7 +37,7 @@ public class BirdDetailActivity extends AppCompatActivity{
         setContentView(R.layout.activity_bird_detail);
         ButterKnife.bind(this);
 
-        Typeface elegantFont = Typeface.createFromAsset(getAssets(), "fonts/AquilineTwo.ttf");
+        Typeface elegantFont = Typeface.createFromAsset(getAssets(), "fonts/Bellefair-Regular.ttf");
 
         for (int i = 0; i < mPagerHeader.getChildCount(); ++i) {
             View nextChild = mPagerHeader.getChildAt(i);
